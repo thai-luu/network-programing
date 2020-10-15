@@ -20,7 +20,7 @@ void showIp(char *hostname)
 {
     struct in_addr **ListAddress;
     struct hostent *hosts;
-    
+
     int i;
     if ((hosts = gethostbyname(hostname)) == NULL)
     {
@@ -34,35 +34,40 @@ void showIp(char *hostname)
         for (i = 0; ListAddress[i] != NULL; i++)
         {
 
-            printf("Official : %s \n", inet_ntoa(*ListAddress[i]));
+            printf("%s \n", inet_ntoa(*ListAddress[i]));
             printf("\n");
-            }
-            printf("Alias: ");
-            if((hosts->h_aliases) == NULL) printf("alias: no alias");
-            else
-            printf("%s\n",*(hosts->h_aliases));
-        
+        }
+        printf("Alias: ");
+        if ((hosts->h_aliases) == NULL)
+            printf("alias: no alias");
+        else
+            printf("%s\n", *(hosts->h_aliases));
     }
 }
 void showDNS(char *IP)
 {
+    // printf("***%s\n", IP);
     struct hostent *host;
-    struct in_addr ipAdd;
-    inet_aton(IP, &ipAdd);
-    host = gethostbyaddr(&ipAdd, sizeof(ipAdd), AF_INET);
-    if (host == NULL){
+    struct in_addr *ipAdd;
+    inet_aton(IP, ipAdd);
+    host = gethostbyaddr(ipAdd, sizeof(ipAdd), AF_INET);
+    if (host == NULL)
+    {
         printf("not found:\n");
     }
-    else {
-    printf("%s\n", host->h_name);
-     if((host->h_aliases) == NULL) printf("alias: no alias");
-     else{
-        printf("Alias: ");
-        printf("%s",*(host->h_aliases));
-        printf("\n");
-     }
+    else
+    {
+        printf("%s\n", host->h_name);
+        if ((host->h_aliases) == NULL)
+            printf("alias: no alias");
+        else
+        {
+            printf("Alias: ");
+            printf("%s", *(host->h_aliases));
+            printf("\n");
+        }
     }
-    }
+}
 int NumberCheck(char *ip_part)
 {
     int Numbers = atoi(ip_part);

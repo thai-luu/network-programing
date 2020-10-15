@@ -8,7 +8,7 @@ void save(FILE *p, accounttype e);
 node *checkPassword(node *root, accounttype e);
 int main()
 {
-    int dem;
+    int dem = 0;
     char userS[20];
     char *input = userS;
     char userLogin[20];
@@ -127,7 +127,7 @@ int main()
                 {
                     printf("Password is incorrect. Account is blocked \n");
                     account->acc.status = 0;
-                    
+
                     break;
                 }
                 printf("Password is incorrect \n");
@@ -140,7 +140,7 @@ int main()
                 if (account->acc.status == 1)
                 {
                     printf("Hello %s\n", user.userName);
-                    strcpy(userS,account->acc.homePage);
+                    strcpy(userS, account->acc.homePage);
                     dem = 1;
                 }
                 else
@@ -209,24 +209,30 @@ int main()
                 printf("Account is not sign in \n");
             }
             break;
-            case 7:
-           if(dem == 1 ){
-            printf("Domain name : ");
-            //if(checkIp(input) == 0)
-            //printf("%s\n",userS);
-            //if(checkIp(input) == 1) 
-            showDNS(input);
-           }
-           if (dem == 0)
-            printf("Account is not sign in \n");
-            break;
-            case 8:
-            if(dem ==1){
-                printf("IP address: ");
-                
+        case 7:
+            if (dem == 1)
+            {
+                // printf("***%s\n", input);
+                printf("Domain name : ");
+                if(checkIp(input) == 0)
+                printf("%s\n",userS);
+                if(checkIp(input) == 1)
+                showDNS(input);
             }
             if (dem == 0)
-            printf("Account is not sign in \n");
+                printf("Account is not sign in \n");
+            break;
+        case 8:
+            if (dem == 1)
+            {
+                printf("IP address: ");
+                if (checkIp(input) == 1)
+                printf("%s\n",userS);
+                if(checkIp(input) == 0)
+                showIp(input);
+            }
+            if (dem == 0)
+                printf("Account is not sign in \n");
             break;
         default:
             break;

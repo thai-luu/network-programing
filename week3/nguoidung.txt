@@ -1,2 +1,5 @@
-thai 1234 2 facebook.com
-thaidz9 21 1 192.168.31.1
+thai 1234 1 facebook.com
+thaidz9 21 1 172.217.25.14
+thangnk 123456 1 fb.com
+thail 12 1 fb.com
+thailuu 12 1 youtube.com
